@@ -20,7 +20,6 @@ using namespace MNN;
 
 
 void preprocess(const char* inputImageFileName, Tensor* input) {
-
     int originalWidth;
     int originalHeight;
     int originChannel;
@@ -44,10 +43,10 @@ void preprocess(const char* inputImageFileName, Tensor* input) {
 
 
 float CalculateSimilarity(std::vector<float> feat1, std::vector<float> feat2) {
-	  float inner_product = 0.0f;
-	  float feat_norm1 = 0.0f;
-	  float feat_norm2 = 0.0f;
-	  for(int i = 0; i < 512; ++i) {
+    float inner_product = 0.0f;
+    float feat_norm1 = 0.0f;
+    float feat_norm2 = 0.0f;
+    for(int i = 0; i < 512; ++i) {
         inner_product += feat1[i] * feat2[i];
         feat_norm1 += feat1[i] * feat1[i];
         feat_norm2 += feat2[i] * feat2[i];
