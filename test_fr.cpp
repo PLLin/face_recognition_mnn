@@ -50,8 +50,8 @@ float CalculateSimilarity(std::vector<float> feat1, std::vector<float> feat2) {
         inner_product += feat1[i] * feat2[i];
         feat_norm1 += feat1[i] * feat1[i];
         feat_norm2 += feat2[i] * feat2[i];
-	  }
-	  return inner_product / sqrt(feat_norm1) / sqrt(feat_norm2);
+	}
+	return inner_product / sqrt(feat_norm1) / sqrt(feat_norm2);
 }
 
 std::vector<float> inference(std::shared_ptr<MNN::Interpreter> mnnNet, Session* session) {
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
     std::vector<float> feat2 = inference(mnnNet, session);
 
     float sim = CalculateSimilarity(feat1, feat2);
-    std::cout << "sim:" << sim << std::endl;
+    std::cout << "similarity:" << sim << std::endl;
     return 0;
 }
 
