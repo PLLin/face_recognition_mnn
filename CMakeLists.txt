@@ -15,7 +15,9 @@ if(CMAKE_SYSTEM_NAME MATCHES "^Linux")
     endif()
 endif()
 
-include_directories(${MNN_PATH}/include/
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS}
+                    ${MNN_PATH}/include/
                     ${MNN_PATH}/source/
                     ${MNN_PATH}/express/
                     ${MNN_PATH}/tools/
@@ -25,12 +27,18 @@ include_directories(${MNN_PATH}/include/
                     ${MNN_PATH}/3rd_party/flatbuffers/include
                     ${MNN_PATH}/3rd_party/half
                     ${MNN_PATH}/3rd_party/imageHelper
-                    ${MNN_PATH}/3rd_party/OpenCLHeaders/)
+                    ${MNN_PATH}/3rd_party/OpenCLHeaders/
+                    ${CMAKE_CURRENT_LIST_DIR}/include/)
+
+aux_source_directory(${CMAKE_CURRENT_LIST_DIR}/src/ DIR_SRCS)
 
 link_directories(${MNN_PATH}/build)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_executable(test_fr.out ${CMAKE_CURRENT_LIST_DIR}/test_fr.cpp)
-target_link_libraries(test_fr.out MNN)
+add_executable(fr_trial_run ${CMAKE_CURRENT_LIST_DIR}/fr_trial_run.cpp)
+target_link_libraries(fr_trial_run MNN)
+
+add_executable(fr_main ${CMAKE_CURRENT_LIST_DIR}/fr_main.cpp ${DIR_SRCS})
+target_link_libraries(fr_main MNN ${OpenCV_LIBS})
