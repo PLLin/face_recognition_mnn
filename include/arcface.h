@@ -1,3 +1,6 @@
+#ifndef _ARCFACE_H_
+#define _ARCFACE_H_
+
 #include <math.h>
 #include <fstream>
 #include <iostream>
@@ -33,4 +36,6 @@ class Arcface : public FaceRecognition
 
     const float mMeanVals[3] = {127.5f, 127.5f, 127.5f}; // RGB
     const float mNormVals[3] = {1.f / 127.5f, 1.f / 127.5f, 1.f / 127.5f};
-};  
+};
+
+#endif
