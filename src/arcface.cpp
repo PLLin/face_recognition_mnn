@@ -3,6 +3,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image.h"
 #include "stb_image_write.h"
+#include <cstdlib> 
 
 #define OUTPUT_NODE_NAME "683"
 using namespace MNN;
@@ -71,5 +72,5 @@ float Arcface::calculateSimilarity(std::vector<float>& feat1, std::vector<float>
     feat_norm1 += feat1[i] * feat1[i];
     feat_norm2 += feat2[i] * feat2[i];
 	}
-	return inner_product / sqrt(feat_norm1) / sqrt(feat_norm2);
+	return abs(inner_product) / sqrt(feat_norm1) / sqrt(feat_norm2);
 }
